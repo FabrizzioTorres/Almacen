@@ -1,6 +1,7 @@
 package com.example.ALMACENMULTIPRO.controller;
 
 import com.example.ALMACENMULTIPRO.model.Salida;
+import com.example.ALMACENMULTIPRO.model.Usuario;
 import com.example.ALMACENMULTIPRO.service.ProductoService;
 import com.example.ALMACENMULTIPRO.service.SalidaService;
 import com.example.ALMACENMULTIPRO.service.UsuarioService;
@@ -74,9 +75,17 @@ public class SalidaController {
             @PathVariable String id,
             Model model) {
 
+        Salida salida = salidaService.buscarSalida(id);
+
+        Usuario usuario = usuarioService.buscarUsuario(
+                salida.getSalResponsable()
+        );
+
+        model.addAttribute("salida", salida);
+
         model.addAttribute(
-                "salida",
-                salidaService.buscarSalida(id)
+                "nombreResponsable",
+                usuario.getUsuNombre()
         );
 
         return "VermasSalidas";
@@ -89,5 +98,25 @@ public class SalidaController {
         salidaService.eliminarSalida(id);
 
         return "redirect:/Gestionsalidas";
+    }
+    @GetMapping("/vermasSalidaTransaccion/{id}")
+    public String verMasSalidaTransaccion(
+            @PathVariable String id,
+            Model model) {
+
+        Salida salida = salidaService.buscarSalida(id);
+
+        Usuario usuario = usuarioService.buscarUsuario(
+                salida.getSalResponsable()
+        );
+
+        model.addAttribute("salida", salida);
+
+        model.addAttribute(
+                "nombreResponsable",
+                usuario.getUsuNombre()
+        );
+
+        return "VermasSalidaTransaccion";
     }
 }

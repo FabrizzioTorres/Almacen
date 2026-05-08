@@ -76,39 +76,6 @@ tr:nth-child(even) {
     background: #f9f9f9;
 }
 
-
-/* ESTADOS */
-.estado {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-
-.alto {
-    background: #d4edda;
-    color: green;
-}
-
-
-.medio {
-    background: #fff3cd;
-    color: orange;
-}
-
-
-.bajo {
-    background: #f8d7da;
-    color: red;
-}
-
-
-.negado {
-     background: #4c96eb;
-    color: blue;
-
-
-}
 .btn-eliminar {
     background: #dc2626;
     color: white;
@@ -121,12 +88,7 @@ tr:nth-child(even) {
 .btn-eliminar:hover {
     background: #b91c1c;
 }
-.cancelado {
-         background: #f5f5f5;
-    color: black;
 
-
-}
 .btn {
     background: #0a2540;
     color: white;

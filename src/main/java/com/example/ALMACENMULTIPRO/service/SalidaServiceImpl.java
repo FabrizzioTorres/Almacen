@@ -60,8 +60,7 @@ public class SalidaServiceImpl
                         < d.getCantidad()) {
 
                     throw new RuntimeException(
-                            "Stock insuficiente para el producto: "
-                                    + producto.getProdNombre()
+                            "Stock insuficiente"
                     );
                 }
 

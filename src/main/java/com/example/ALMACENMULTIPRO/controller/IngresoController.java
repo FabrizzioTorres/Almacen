@@ -4,6 +4,7 @@ import com.example.ALMACENMULTIPRO.model.Ingreso;
 import com.example.ALMACENMULTIPRO.service.IngresoService;
 import com.example.ALMACENMULTIPRO.service.ProductoService;
 import com.example.ALMACENMULTIPRO.service.UsuarioService;
+import com.example.ALMACENMULTIPRO.model.Usuario;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,14 +75,21 @@ public class IngresoController {
             @PathVariable String id,
             Model model) {
 
+        Ingreso ingreso = ingresoService.buscarIngreso(id);
+
+        Usuario usuario = usuarioService.buscarUsuario(
+                ingreso.getIngResponsable()
+        );
+
+        model.addAttribute("ingreso", ingreso);
+
         model.addAttribute(
-                "ingreso",
-                ingresoService.buscarIngreso(id)
+                "nombreResponsable",
+                usuario.getUsuNombre()
         );
 
         return "VermasIngreso";
     }
-
     @GetMapping("/eliminarIngreso/{id}")
     public String eliminarIngreso(
             @PathVariable String id) {
@@ -89,5 +97,25 @@ public class IngresoController {
         ingresoService.eliminarIngreso(id);
 
         return "redirect:/GestionIngreso";
+    }
+    @GetMapping("/vermasIngresoTransaccion/{id}")
+    public String verMasIngresoTransaccion(
+            @PathVariable String id,
+            Model model) {
+
+        Ingreso ingreso = ingresoService.buscarIngreso(id);
+
+        Usuario usuario = usuarioService.buscarUsuario(
+                ingreso.getIngResponsable()
+        );
+
+        model.addAttribute("ingreso", ingreso);
+
+        model.addAttribute(
+                "nombreResponsable",
+                usuario.getUsuNombre()
+        );
+
+        return "VermasIngresoTransaccion";
     }
 }

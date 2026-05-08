@@ -28,6 +28,7 @@
         <li><a href="/Usuario">Usuarios</a></li>
         <li><a href="/GestionIngreso">Ingresos</a></li>
         <li><a href="/Gestionsalidas"><u>Salidas</u></a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
     </ul>
 </nav>
 
@@ -63,10 +64,14 @@
                 <td th:text="${s.salHora}"></td>
 
                 <td>
-                    <a th:href="@{'/vermasSalida/' + ${s.id_Salida}}" class="btn">Ver más</a>
+                    <a th:href="@{/vermasSalida/{id}(id=${s.id_Salida})}"
+                       class="btn">
+                        Ver más
+                    </a>
+
                     <a th:href="@{'/eliminarSalida/' + ${s.id_Salida}}"
                        class="btn-eliminar"
-                       onclick="return confirm('¿Seguro que deseas eliminar este ingreso?')">
+                       onclick="return confirm('¿Seguro que deseas eliminar esta salida?')">
                         X
                     </a>
                 </td>
