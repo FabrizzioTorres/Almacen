@@ -85,4 +85,13 @@ public class ProductoController {
 
         return "redirect:/Gestion";
     }
+
+	@PostMapping("/actualizarProducto")
+    	public String actualizarProducto(
+            @ModelAttribute Producto producto) {
+
+        productoService.actualizarProducto(producto);
+
+        return "redirect:/Gestion";
+    }	
 }
