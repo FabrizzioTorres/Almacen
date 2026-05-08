@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Salida | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylesvermassalidas.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Detalle de la Salida</span>
+</header>
+
+<main class="container">
+
+    <section class="card">
+        <h2>Datos de la Salida</h2>
+
+        <div class="form-general">
+
+            <div>
+                <label>ID</label>
+                <p th:text="${salida.id_Salida}"></p>
+            </div>
+
+            <div>
+                <label>Proveedor</label>
+                <p th:text="${salida.salProveedor}"></p>
+            </div>
+
+            <div>
+                <label>Responsable</label>
+                <p th:text="${nombreResponsable}"></p>
+            </div>
+
+            <div>
+                <label>Fecha</label>
+                <p th:text="${salida.salFecha}"></p>
+            </div>
+
+            <div>
+                <label>Hora</label>
+                <p th:text="${salida.salHora}"></p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Productos de la Salida</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre Producto</th>
+                <th>Cantidad</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="d, iter : ${salida.detalles}">
+                <td th:text="${iter.index + 1}"></td>
+                <td th:text="${d.nombreProducto}"></td>
+                <td th:text="${d.cantidad}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <a href="/Transacciones" class="btn-agregar">⬅ Volver</a>
+
+    </section>
+
+</main>
+
+</body>
+</html>
