@@ -1,0 +1,102 @@
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Transacciones | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylestransacciones.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Historial de Transacciones</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/GestionIngreso">Ingresos</a></li>
+        <li><a href="/Gestionsalidas">Salidas</a></li>
+        <li><a href="/Transacciones"><u>Transacciones</u></a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2>Lista de Transacciones</h2>
+    </div>
+
+    <div class="tabla-contenedor">
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Responsable</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Productos</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="t : ${transacciones}">
+
+                <td th:text="${t.idTransaccion}"></td>
+
+                <td>
+                    <span th:if="${t.tipo == 'Ingreso'}"
+                          style="color: green; font-weight: bold;">
+                        INGRESO
+                    </span>
+
+                    <span th:if="${t.tipo == 'Salida'}"
+                          style="color: red; font-weight: bold;">
+                        SALIDA
+                    </span>
+                </td>
+
+                <td th:text="${t.responsable}"></td>
+                <td th:text="${t.fecha}"></td>
+                <td th:text="${t.hora}"></td>
+
+                <td>
+
+                    <a th:if="${t.tipo == 'Ingreso'}"
+                       th:href="@{/vermasIngresoTransaccion/{id}(id=${t.idTransaccion})}"
+                       class="btn">
+                        Ver más
+                    </a>
+
+                    <a th:if="${t.tipo == 'Salida'}"
+                       th:href="@{/vermasSalidaTransaccion/{id}(id=${t.idTransaccion})}"
+                       class="btn">
+                        Ver más
+                    </a>
+
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 MULTIPRO PERU S.A.C.</p>
+</footer>
+
+</body>
+</html>
